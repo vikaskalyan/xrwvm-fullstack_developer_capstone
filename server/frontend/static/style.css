@@ -124,3 +124,67 @@ img{
     text-align:center;
     box-shadow: 2px 2px 3px #999;  
 }
+
+/* .contact-container {
+    width: 800px;
+    padding: 200px;
+    border: 1px solid #333;
+    border-radius: 20px;
+    border-bottom-right-radius: 10%;
+    box-shadow: 500px 50px 10px rgba(64, 61, 61, 0.1);
+    text-align: center;
+    margin: 50px auto;
+} */
+
+.contact-container {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    margin-top: 50px;        /* push container down */
+}
+
+.card-img-top {
+    display: block;          /* needed for centering with margin */
+    width: 100%;             /* full width of the card */
+    height: auto;            /* maintain aspect ratio */
+    border-radius: 10px;     /* optional rounded corners */
+    margin: 0 auto;   
+}
+
+.contact-picture {
+    width: 25%;
+    height: 50%;
+    margin-left: 70%;
+    margin-top: -15%;
+
+}
+
+.customer-contact {
+    width: 400px;       /* container width */
+    height: 300px;      /* container height */
+    padding: 10px;      /* inner spacing */
+    margin: -330px 80px ;  /* center horizontally and push down from top */
+    
+
+}
+
+.contact-container {
+    display: flex;              /* side by side layout */
+    align-items: flex-start;    /* top align everything */
+    justify-content: center;    /* horizontally center the group */
+    gap: 30px;                  /* space between items */
+    margin-top: 50px;           /* spacing from top of page */
+    margin-right: 100px;
+}
+
+
+.bold-letter {
+    font-weight: bold;
+    margin: 5px 0 0 0;
+    color: #0C9;
+}
+
+.lower-letter {
+    font-weight: normal;
+    margin: 0 0 10px 0;
+    color: #7d5757;
+}
