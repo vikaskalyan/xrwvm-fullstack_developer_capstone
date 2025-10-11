@@ -75,19 +75,45 @@ const PostReview = () => {
     }
   }
 
-  const get_cars = async ()=>{
-    const res = await fetch(carmodels_url, {
-      method: "GET"
-    });
-    const retobj = await res.json();
+//   const get_cars = async ()=>{
+//     const res = await fetch(carmodels_url, {
+//       method: "GET"
+//     });
+//     const retobj = await res.json();
     
-    let carmodelsarr = Array.from(retobj.CarModels)
-    setCarmodels(carmodelsarr)
-  }
-  useEffect(() => {
+//     let carmodelsarr = Array.from(retobj.CarModels)
+//     setCarmodels(carmodelsarr)
+//   }
+//   useEffect(() => {
+//     get_dealer();
+//     get_cars();
+//   },[]);
+
+const get_cars = async () => {
+    console.log("Fetching cars from:", carmodels_url);
+    try {
+      const res = await fetch(carmodels_url, { method: "GET" });
+      const retobj = await res.json();
+      console.log("CarModels received:", retobj.CarModels);
+  
+      if (retobj.CarModels && retobj.CarModels.length > 0) {
+        setCarmodels(retobj.CarModels);
+      } else {
+        console.warn("No car models returned from backend");
+      }
+    } catch (err) {
+      console.error("Error fetching car models:", err);
+    }
+  };
+
+    useEffect(() => {
     get_dealer();
     get_cars();
   },[]);
+//     get_dealer();
+//     get_cars();
+//   },[]);
+  
 
 
   return (
@@ -102,10 +128,18 @@ const PostReview = () => {
       <div className='input_field'>
       Car Make 
       <select name="cars" id="cars" onChange={(e) => setModel(e.target.value)}>
-      <option value="" selected disabled hidden>Choose Car Make and Model</option>
-      {carmodels.map(carmodel => (
-          <option value={carmodel.CarMake+" "+carmodel.CarModel}>{carmodel.CarMake} {carmodel.CarModel}</option>
-      ))}
+
+      <option value="" disabled hidden>Choose Car Make and Model</option>
+        {carmodels.length > 0 ? (
+        carmodels.map((carmodel, i) => (
+            <option key={i} value={`${carmodel.CarMake} ${carmodel.CarModel}`}>
+            {carmodel.CarMake} {carmodel.CarModel}
+            </option>
+        ))
+        ) : (
+        <option disabled>Loading...</option>
+        )}
+
       </select>        
       </div >
 
